@@ -12,25 +12,17 @@ function setup(){
 
 function draw(){
   background(250);
-  var radius = width * 1.5;
-  
-  //drag to move the world.
-  orbitControl();
+  rotateY(frameCount * 0.01);
 
-  normalMaterial();
-  translate(0, 0, -600);
-  for(var i = 0; i <= 12; i++){
-    for(var j = 0; j <= 12; j++){
+  for(var j = 0; j < 5; j++){
+    push();
+    for(var i = 0; i < 80; i++){
+      translate(sin(frameCount * 0.001 + j) * 100, sin(frameCount * 0.001 + j) * 100, i * 0.1);
+      rotateZ(frameCount * 0.002);
       push();
-      var a = j/12 * PI;
-      var b = i/12 * PI;
-      translate(sin(2 * a) * radius * sin(b), cos(b) * radius / 2 , cos(2 * a) * radius * sin(b));    
-      if(j%2 === 0){
-        cone(30, 30);
-      }else{
-        box(30, 30, 30);
-      }
+      sphere(8, 6, 4); 
       pop();
     }
+    pop();
   }
 }
